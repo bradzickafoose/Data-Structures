@@ -95,6 +95,9 @@ class DoublyLinkedList:
     Returns the value of the removed Node."""
 
     def remove_from_tail(self):
+        if not self.tail:
+          return None
+
         value = self.tail.value
         self.delete(self.tail)
         return value
