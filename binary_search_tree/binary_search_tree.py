@@ -52,10 +52,7 @@ class BinarySearchTree:
 
     # Return the maximum value found in the tree
     def get_max(self):
-        if not self:
-          return None
-
-          # iterative solution
+          ## iterative solution
 
           # current_tree_root = self
           # while current_tree_root.right:
@@ -63,26 +60,35 @@ class BinarySearchTree:
 
           # return current_tree_root.value
 
-          # recursive solution
+          ## recursive solution
 
           # if we can go right, go right
           # return when we can't go right anymore
           if not self.right:
             return self.value
+
           max_value = self.right.get_max()
+
           return max_value
 
 
 
     # Call the function `cb` on the value of each node
     # You may use a recursive or iterative approach
-    def for_each(self, cb):
-        cb(self.value)
+    def for_each(self, callback):
+        if self == None:
+          return
 
+        # call the function
+        callback(self.value)
+
+        # if left is not None, go left
         if self.left:
-          self.left.for_each(cb)
+          self.left.for_each(callback)
+
+        # if right is not None, go right
         if self.right:
-          self.right.for_each(cb)
+          self.right.for_each(callback)
 
 
     # DAY 2 Project -----------------------
@@ -90,7 +96,14 @@ class BinarySearchTree:
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self, node):
-        pass
+
+        if node.left:
+          self.in_order_print(node.left)
+
+        print(node.value)
+
+        if node.right:
+          self.in_order_print(node.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
